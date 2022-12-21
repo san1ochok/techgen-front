@@ -1,2 +1,0 @@
-# techgen-front
-Front Version
