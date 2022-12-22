@@ -1,4 +1,0 @@
-"homepage": "https://oleksandr-panashchuk.github.io/techgen-front/",
-"scripts": {
-  "build": "parcel build src/*.html --public-url /techgen-front/"
-},
