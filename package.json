@@ -50,6 +50,7 @@
     ]
   },
   "devDependencies": {
+    "@types/aos": "^3.0.4",
     "eslint-config-react-app": "^7.0.1"
   }
 }
