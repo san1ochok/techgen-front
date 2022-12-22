@@ -76,8 +76,10 @@ const SignUp = (): JSX.Element => {
   return (
     <Box>
       <Card px="2%" radius="md" className={classes.card}>
-        <Text className={classes.card_welcome_text}>You’re welcome! 👋</Text>
-        <Text className={classes.card_signup_text}>
+        <Text className={classes.card_welcome_text} data-aos="fade-up-left">
+          You’re welcome! 👋
+        </Text>
+        <Text className={classes.card_signup_text} data-aos="fade-up-right">
           Sign up your new account
         </Text>
         <form onSubmit={onSubmit}>

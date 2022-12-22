@@ -1,6 +1,9 @@
 import * as React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Loader from './Loader';
+import { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 interface IRoute {
   path: string;
@@ -17,6 +20,12 @@ const App = (): JSX.Element => {
     { path: '/signIn', elem: <SignIn /> },
     { path: '/signUp', elem: <SignUp /> },
   ];
+
+  useEffect(() => {
+    AOS.init({
+      duration: 500,
+    });
+  }, []);
 
   return (
     <>
