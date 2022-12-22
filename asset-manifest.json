@@ -1,16 +1,19 @@
 {
   "files": {
-    "main.js": "/techgen-front/static/js/main.52b9036b.js",
-    "static/js/94.02ded1a0.chunk.js": "/techgen-front/static/js/94.02ded1a0.chunk.js",
-    "static/js/845.056a5abe.chunk.js": "/techgen-front/static/js/845.056a5abe.chunk.js",
+    "main.css": "/techgen-front/static/css/main.fc0706bd.css",
+    "main.js": "/techgen-front/static/js/main.bc68b6a2.js",
+    "static/js/94.ab50cdd1.chunk.js": "/techgen-front/static/js/94.ab50cdd1.chunk.js",
+    "static/js/845.07edf630.chunk.js": "/techgen-front/static/js/845.07edf630.chunk.js",
     "static/js/977.fe30caf6.chunk.js": "/techgen-front/static/js/977.fe30caf6.chunk.js",
     "index.html": "/techgen-front/index.html",
-    "main.52b9036b.js.map": "/techgen-front/static/js/main.52b9036b.js.map",
-    "94.02ded1a0.chunk.js.map": "/techgen-front/static/js/94.02ded1a0.chunk.js.map",
-    "845.056a5abe.chunk.js.map": "/techgen-front/static/js/845.056a5abe.chunk.js.map",
+    "main.fc0706bd.css.map": "/techgen-front/static/css/main.fc0706bd.css.map",
+    "main.bc68b6a2.js.map": "/techgen-front/static/js/main.bc68b6a2.js.map",
+    "94.ab50cdd1.chunk.js.map": "/techgen-front/static/js/94.ab50cdd1.chunk.js.map",
+    "845.07edf630.chunk.js.map": "/techgen-front/static/js/845.07edf630.chunk.js.map",
     "977.fe30caf6.chunk.js.map": "/techgen-front/static/js/977.fe30caf6.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.52b9036b.js"
+    "static/css/main.fc0706bd.css",
+    "static/js/main.bc68b6a2.js"
   ]
 }
