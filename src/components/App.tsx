@@ -17,8 +17,8 @@ const SignUp = React.lazy(() => import('./pages/SignUp'));
 const App = (): JSX.Element => {
   //* routes
   const routes: IRoute[] = [
-    { path: '/signIn', elem: <SignIn /> },
-    { path: '/signUp', elem: <SignUp /> },
+    { path: '/techgen-front/signIn', elem: <SignIn /> },
+    { path: '/techgen-front/signUp', elem: <SignUp /> },
   ];
 
   useEffect(() => {
