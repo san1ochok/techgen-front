@@ -12,9 +12,6 @@ import { useForm } from '@mantine/form';
 import * as React from 'react';
 import { FormEventHandler } from 'react';
 import { useStyles } from '../../styles/authStyles';
-import { useEffect } from 'react';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
 
 export interface IInitialFormValues {
   emailOrPhone: string;
@@ -36,12 +33,6 @@ const SignIn = (): JSX.Element => {
   const onSubmit: FormEventHandler<HTMLFormElement> = form.onSubmit(values => {
     console.log(values);
   });
-
-  useEffect(() => {
-    AOS.init({
-      duration: 500,
-    });
-  }, []);
 
   return (
     <Box>
