@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Route, Routes } from 'react-router-dom';
+import Loader from './Loader';
 
 interface IRoute {
   path: string;
@@ -19,7 +20,7 @@ const App = (): JSX.Element => {
 
   return (
     <>
-      <React.Suspense fallback={<div>Loading...</div>}>
+      <React.Suspense fallback={<Loader />}>
         <Routes>
           {routes.map((route, i) => (
             <Route key={i} path={route.path} element={route.elem} />
