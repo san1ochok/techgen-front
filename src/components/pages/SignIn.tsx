@@ -12,6 +12,9 @@ import { useForm } from '@mantine/form';
 import * as React from 'react';
 import { FormEventHandler } from 'react';
 import { useStyles } from '../../styles/authStyles';
+import { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 export interface IInitialFormValues {
   emailOrPhone: string;
@@ -34,11 +37,19 @@ const SignIn = (): JSX.Element => {
     console.log(values);
   });
 
+  useEffect(() => {
+    AOS.init({
+      duration: 500,
+    });
+  }, []);
+
   return (
     <Box>
       <Card px="2%" radius="md" className={classes.card}>
-        <Text className={classes.card_welcome_text}>You’re welcome! 👋</Text>
-        <Text className={classes.card_signup_text}>
+        <Text className={classes.card_welcome_text} data-aos="fade-up-left">
+          You’re welcome! 👋
+        </Text>
+        <Text className={classes.card_signup_text} data-aos="fade-up-right">
           Sign up your new account
         </Text>
         <form onSubmit={onSubmit}>
