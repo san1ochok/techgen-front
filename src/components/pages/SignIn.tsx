@@ -9,6 +9,7 @@ import {
   Text,
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
+import { useFormSaving } from 'hooks/useFormSaving';
 import * as React from 'react';
 import { FormEventHandler } from 'react';
 import { useStyles } from '../../styles/authStyles';
@@ -29,18 +30,29 @@ const SignIn = (): JSX.Element => {
     },
   });
 
+  useFormSaving<IInitialFormValues>(form, 'signIn');
+
   //* submit
   const onSubmit: FormEventHandler<HTMLFormElement> = form.onSubmit(values => {
     console.log(values);
+    form.reset();
   });
 
   return (
     <Box>
       <Card px="2%" radius="md" className={classes.card}>
-        <Text className={classes.card_welcome_text} data-aos="zoom-in" data-aos-duration='900'>
+        <Text
+          className={classes.card_welcome_text}
+          data-aos="zoom-in"
+          data-aos-duration="900"
+        >
           You’re welcome! 👋
         </Text>
-        <Text className={classes.card_signup_text} data-aos="zoom-in" data-aos-duration='1800'>
+        <Text
+          className={classes.card_signup_text}
+          data-aos="zoom-in"
+          data-aos-duration="1800"
+        >
           Sign up your new account
         </Text>
         <form onSubmit={onSubmit}>
