@@ -9,6 +9,7 @@ import {
   TextInput,
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
+import { useMediaQuery } from '@mantine/hooks';
 import { useFormSaving } from 'hooks/useFormSaving';
 import * as React from 'react';
 import { FormEventHandler } from 'react';
@@ -21,7 +22,10 @@ export interface IInitialFormValues {
 }
 
 const SignUp = (): JSX.Element => {
-  const { classes } = useStyles('signUp');
+  const { classes } = useStyles();
+
+  //* media query
+  const largerThan481 = useMediaQuery('(min-width: 481px)')
 
   //* validate email
   const validateEmailOrPhone = (value: string): null | string => {
@@ -79,7 +83,7 @@ const SignUp = (): JSX.Element => {
 
   return (
     <Box>
-      <Card px="2%" radius="md" className={classes.card}>
+      <Card className={classes.card} px={largerThan481 ? 0 : '4%'} radius="md">
         <Text
           className={classes.card_welcome_text}
           data-aos="zoom-in"

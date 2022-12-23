@@ -9,6 +9,7 @@ import {
   Text,
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
+import { useMediaQuery } from '@mantine/hooks';
 import { useFormSaving } from 'hooks/useFormSaving';
 import * as React from 'react';
 import { FormEventHandler } from 'react';
@@ -20,7 +21,10 @@ export interface IInitialFormValues {
 }
 
 const SignIn = (): JSX.Element => {
-  const { classes } = useStyles('signIn');
+  const { classes } = useStyles();
+
+  //* media query
+  const largerThan481 = useMediaQuery('(min-width: 481px)')
 
   //* form
   const form = useForm<IInitialFormValues>({
@@ -40,7 +44,7 @@ const SignIn = (): JSX.Element => {
 
   return (
     <Box>
-      <Card px="2%" radius="md" className={classes.card}>
+      <Card className={classes.card} px={largerThan481 ? 0 : '4%'} radius="md">
         <Text
           className={classes.card_welcome_text}
           data-aos="zoom-in"
@@ -86,7 +90,7 @@ const SignIn = (): JSX.Element => {
         <Center>
           <Text className={classes.account_text}>
             Already have an account?{' '}
-            <Text sx={{ color: '#625BF7' }} component="a" href="/signUp">
+            <Text c='#625BF7' component="a" href="/signUp">
               Sign up
             </Text>
           </Text>
