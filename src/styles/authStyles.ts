@@ -1,17 +1,16 @@
 import { createStyles } from '@mantine/core';
 
-export const useStyles = createStyles(
-  (theme, pageType: 'signIn' | 'signUp') => ({
+export const useStyles = createStyles({
     card: {
       position: 'absolute',
       top: '50%',
       left: '50%',
       transform: 'translate(-50%, -50%)',
-      height: pageType === 'signUp' ? '550px' : '470px',
+      height: 'auto',
       filter: 'drop-shadow(0px 4px 100px rgba(121, 126, 249, 0.19))',
 
       '@media (min-width: 320px)': {
-        width: '95%',
+        width: '92%',
       },
       '@media (min-width: 481px)': {
         width: '60%',
@@ -76,5 +75,4 @@ export const useStyles = createStyles(
       fontSize: '12px',
       marginTop: '20px',
     },
-  })
-);
+  });

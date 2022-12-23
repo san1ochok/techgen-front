@@ -9,6 +9,8 @@ import {
   TextInput,
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
+import { useMediaQuery } from '@mantine/hooks';
+import { useFormSaving } from 'hooks/useFormSaving';
 import * as React from 'react';
 import { FormEventHandler } from 'react';
 import { useStyles } from '../../styles/authStyles';
@@ -20,18 +22,21 @@ export interface IInitialFormValues {
 }
 
 const SignUp = (): JSX.Element => {
-  const { classes } = useStyles('signUp');
+  const { classes } = useStyles();
+
+  //* media query
+  const largerThan481 = useMediaQuery('(min-width: 481px)')
 
   //* validate email
   const validateEmailOrPhone = (value: string): null | string => {
     if (value.includes('@')) {
-      const validRegex: RegExp =
-        /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+      const validRegex: RegExp = /^(\d{3})[- ]?(\d{3})[- ]?(\d{4})$/;
 
       if (validRegex.test(value)) return null;
       else return 'Invalid email';
     } else {
-      const validRegex: RegExp = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;
+      const validRegex: RegExp =
+        /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/;
 
       if (validRegex.test(value)) return null;
       else return 'Invalid phone number';
@@ -41,10 +46,10 @@ const SignUp = (): JSX.Element => {
   //* validate password
   const validatePassword = (value: string): null | string => {
     //* minimum 8 eight characters: digit, symbol, uppercase, lowercase
-    if (
-      /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})/.test(value)
-    )
-      return null;
+    const validRegex: RegExp =
+      /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})/;
+
+    if (validRegex.test(value)) return null;
     else return 'Invalid password';
   };
 
@@ -62,6 +67,8 @@ const SignUp = (): JSX.Element => {
     },
   });
 
+  useFormSaving<IInitialFormValues>(form, 'signUp');
+
   //* checking if password equal
   const { password, repeatedPassword } = form.values;
 
@@ -71,15 +78,24 @@ const SignUp = (): JSX.Element => {
   //* submit
   const onSubmit: FormEventHandler<HTMLFormElement> = form.onSubmit(values => {
     console.log(values);
+    form.reset();
   });
 
   return (
     <Box>
-      <Card px="2%" radius="md" className={classes.card}>
-        <Text className={classes.card_welcome_text} data-aos="zoom-in" data-aos-duration='900'>
+      <Card className={classes.card} px={largerThan481 ? 0 : '4%'} radius="md">
+        <Text
+          className={classes.card_welcome_text}
+          data-aos="zoom-in"
+          data-aos-duration="900"
+        >
           You’re welcome! 👋
         </Text>
-        <Text className={classes.card_signup_text} data-aos="zoom-in" data-aos-duration='1800'>
+        <Text
+          className={classes.card_signup_text}
+          data-aos="zoom-in"
+          data-aos-duration="1800"
+        >
           Sign up your new account
         </Text>
         <form onSubmit={onSubmit}>
@@ -115,7 +131,7 @@ const SignUp = (): JSX.Element => {
         <Center>
           <Text className={classes.account_text}>
             Already have an account?{' '}
-            <Text sx={{ color: '#625BF7' }} component="a" href="/signIn">
+            <Text c="#625BF7" component="a" href="/signIn">
               Sign in
             </Text>
           </Text>

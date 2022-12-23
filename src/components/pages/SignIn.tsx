@@ -9,6 +9,8 @@ import {
   Text,
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
+import { useMediaQuery } from '@mantine/hooks';
+import { useFormSaving } from 'hooks/useFormSaving';
 import * as React from 'react';
 import { FormEventHandler } from 'react';
 import { useStyles } from '../../styles/authStyles';
@@ -19,7 +21,10 @@ export interface IInitialFormValues {
 }
 
 const SignIn = (): JSX.Element => {
-  const { classes } = useStyles('signIn');
+  const { classes } = useStyles();
+
+  //* media query
+  const largerThan481 = useMediaQuery('(min-width: 481px)')
 
   //* form
   const form = useForm<IInitialFormValues>({
@@ -29,18 +34,29 @@ const SignIn = (): JSX.Element => {
     },
   });
 
+  useFormSaving<IInitialFormValues>(form, 'signIn');
+
   //* submit
   const onSubmit: FormEventHandler<HTMLFormElement> = form.onSubmit(values => {
     console.log(values);
+    form.reset();
   });
 
   return (
     <Box>
-      <Card px="2%" radius="md" className={classes.card}>
-        <Text className={classes.card_welcome_text} data-aos="zoom-in" data-aos-duration='900'>
+      <Card className={classes.card} px={largerThan481 ? 0 : '4%'} radius="md">
+        <Text
+          className={classes.card_welcome_text}
+          data-aos="zoom-in"
+          data-aos-duration="900"
+        >
           You’re welcome! 👋
         </Text>
-        <Text className={classes.card_signup_text} data-aos="zoom-in" data-aos-duration='1800'>
+        <Text
+          className={classes.card_signup_text}
+          data-aos="zoom-in"
+          data-aos-duration="1800"
+        >
           Sign up your new account
         </Text>
         <form onSubmit={onSubmit}>
@@ -74,7 +90,7 @@ const SignIn = (): JSX.Element => {
         <Center>
           <Text className={classes.account_text}>
             Already have an account?{' '}
-            <Text sx={{ color: '#625BF7' }} component="a" href="/signUp">
+            <Text c='#625BF7' component="a" href="/signUp">
               Sign up
             </Text>
           </Text>
