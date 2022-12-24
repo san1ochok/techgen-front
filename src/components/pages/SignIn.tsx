@@ -1,5 +1,5 @@
 import {
-  Box,
+  BackgroundImage,
   Card,
   Stack,
   TextInput,
@@ -16,6 +16,7 @@ import { FormEventHandler } from 'react';
 import { useStyles } from '../../styles/authStyles';
 import { ISignUpFormValues } from './SignUp';
 import { IconAt } from '@tabler/icons';
+import authBgSrc from '../../images/authBg.png';
 
 type ISignInFormValues = Omit<ISignUpFormValues, 'repeatedPassword'>;
 
@@ -42,8 +43,12 @@ const SignIn = (): JSX.Element => {
   });
 
   return (
-    <Box>
-      <Card className={classes.card} px={largerThan481 ? 0 : '4%'} radius="md">
+    <BackgroundImage className={classes.container} src={authBgSrc}>
+      <Card
+        className={classes.card}
+        px={largerThan481 ? '3%' : '4%'}
+        radius="md"
+      >
         <Text
           className={classes.card_welcome_text}
           data-aos="zoom-in"
@@ -96,7 +101,7 @@ const SignIn = (): JSX.Element => {
           </Text>
         </Center>
       </Card>
-    </Box>
+    </BackgroundImage>
   );
 };
 
