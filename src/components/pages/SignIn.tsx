@@ -43,7 +43,7 @@ const SignIn = (): JSX.Element => {
 
   return (
     <Box>
-      <Card className={classes.card} px={largerThan481 ? 0 : '4%'} radius="md">
+      <Card className={classes.card} px={largerThan481 ? '3%' : '4%'} radius="md">
         <Text
           className={classes.card_welcome_text}
           data-aos="zoom-in"
