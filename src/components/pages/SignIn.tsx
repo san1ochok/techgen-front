@@ -14,27 +14,26 @@ import { useFormSaving } from 'hooks/useFormSaving';
 import * as React from 'react';
 import { FormEventHandler } from 'react';
 import { useStyles } from '../../styles/authStyles';
+import { ISignUpFormValues } from './SignUp';
+import { IconAt } from '@tabler/icons';
 
-export interface IInitialFormValues {
-  emailOrPhone: string;
-  password: string;
-}
+type ISignInFormValues = Omit<ISignUpFormValues, 'repeatedPassword'>;
 
 const SignIn = (): JSX.Element => {
   const { classes } = useStyles();
 
   //* media query
-  const largerThan481 = useMediaQuery('(min-width: 481px)')
+  const largerThan481 = useMediaQuery('(min-width: 481px)');
 
   //* form
-  const form = useForm<IInitialFormValues>({
+  const form = useForm<ISignInFormValues>({
     initialValues: {
-      emailOrPhone: '',
+      email: '',
       password: '',
     },
   });
 
-  useFormSaving<IInitialFormValues>(form, 'signIn');
+  useFormSaving<ISignInFormValues>(form, 'signIn');
 
   //* submit
   const onSubmit: FormEventHandler<HTMLFormElement> = form.onSubmit(values => {
@@ -62,10 +61,11 @@ const SignIn = (): JSX.Element => {
         <form onSubmit={onSubmit}>
           <Stack spacing="md">
             <TextInput
-              {...form.getInputProps('emailOrPhone')}
+              {...form.getInputProps('email')}
               size="md"
               radius="md"
-              label="Your email or Phone"
+              label="Email"
+              icon={<IconAt size={18} />}
             />
             <PasswordInput
               {...form.getInputProps('password')}
@@ -90,7 +90,7 @@ const SignIn = (): JSX.Element => {
         <Center>
           <Text className={classes.account_text}>
             Already have an account?{' '}
-            <Text c='#625BF7' component="a" href="/signUp">
+            <Text c="#625BF7" component="a" href="/techgen-front/signUp">
               Sign up
             </Text>
           </Text>

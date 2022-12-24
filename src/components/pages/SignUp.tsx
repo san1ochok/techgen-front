@@ -14,9 +14,10 @@ import { useFormSaving } from 'hooks/useFormSaving';
 import * as React from 'react';
 import { FormEventHandler } from 'react';
 import { useStyles } from '../../styles/authStyles';
+import { IconAt } from '@tabler/icons';
 
-export interface IInitialFormValues {
-  emailOrPhone: string;
+export interface ISignUpFormValues {
+  email: string;
   password: string;
   repeatedPassword: string;
 }
@@ -25,22 +26,15 @@ const SignUp = (): JSX.Element => {
   const { classes } = useStyles();
 
   //* media query
-  const largerThan481 = useMediaQuery('(min-width: 481px)')
+  const largerThan481 = useMediaQuery('(min-width: 481px)');
 
   //* validate email
-  const validateEmailOrPhone = (value: string): null | string => {
-    if (value.includes('@')) {
-      const validRegex: RegExp = /^(\d{3})[- ]?(\d{3})[- ]?(\d{4})$/;
+  const validateEmail = (value: string): null | string => {
+    const validRegex: RegExp =
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-      if (validRegex.test(value)) return null;
-      else return 'Invalid email';
-    } else {
-      const validRegex: RegExp =
-        /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/;
-
-      if (validRegex.test(value)) return null;
-      else return 'Invalid phone number';
-    }
+    if (validRegex.test(value)) return null;
+    else return 'Invalid email';
   };
 
   //* validate password
@@ -50,30 +44,36 @@ const SignUp = (): JSX.Element => {
       /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})/;
 
     if (validRegex.test(value)) return null;
-    else return 'Invalid password';
+    else
+      return 'Password must include minimum 8 characters: digit, symbol, uppercase, lowercase';
   };
 
   //* form
-  const form = useForm<IInitialFormValues>({
+  const form = useForm<ISignUpFormValues>({
     initialValues: {
-      emailOrPhone: '',
+      email: '',
       password: '',
       repeatedPassword: '',
     },
     validate: {
-      emailOrPhone: validateEmailOrPhone,
+      email: validateEmail,
       password: validatePassword,
       repeatedPassword: validatePassword,
     },
   });
 
-  useFormSaving<IInitialFormValues>(form, 'signUp');
+  useFormSaving<ISignUpFormValues>(form, 'signUp');
 
   //* checking if password equal
   const { password, repeatedPassword } = form.values;
 
-  if (repeatedPassword.length > 0 && repeatedPassword !== password)
+  if (repeatedPassword.length > 0 && repeatedPassword !== password) {
     form.errors.repeatedPassword = "Passwords aren't same";
+  }
+
+  if (password === repeatedPassword && form.errors.password) {
+    form.errors.repeatedPassword = null;
+  }
 
   //* submit
   const onSubmit: FormEventHandler<HTMLFormElement> = form.onSubmit(values => {
@@ -101,10 +101,11 @@ const SignUp = (): JSX.Element => {
         <form onSubmit={onSubmit}>
           <Stack spacing="md">
             <TextInput
-              {...form.getInputProps('emailOrPhone')}
+              {...form.getInputProps('email')}
               size="md"
               radius="md"
-              label="Your email or Phone"
+              label="Email"
+              icon={<IconAt size={18} />}
             />
             <PasswordInput
               {...form.getInputProps('password')}
@@ -131,7 +132,7 @@ const SignUp = (): JSX.Element => {
         <Center>
           <Text className={classes.account_text}>
             Already have an account?{' '}
-            <Text c="#625BF7" component="a" href="/signIn">
+            <Text c="#625BF7" component="a" href="/techgen-front/signIn">
               Sign in
             </Text>
           </Text>
