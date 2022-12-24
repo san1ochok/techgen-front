@@ -1,19 +1,19 @@
 {
   "files": {
     "main.css": "/techgen-front/static/css/main.fc0706bd.css",
-    "main.js": "/techgen-front/static/js/main.abc7d062.js",
-    "static/js/94.e0a119f8.chunk.js": "/techgen-front/static/js/94.e0a119f8.chunk.js",
-    "static/js/845.5d9c2a85.chunk.js": "/techgen-front/static/js/845.5d9c2a85.chunk.js",
-    "static/js/568.dbda8094.chunk.js": "/techgen-front/static/js/568.dbda8094.chunk.js",
+    "main.js": "/techgen-front/static/js/main.81045c69.js",
+    "static/js/94.11cfdc0c.chunk.js": "/techgen-front/static/js/94.11cfdc0c.chunk.js",
+    "static/js/845.98b7fc14.chunk.js": "/techgen-front/static/js/845.98b7fc14.chunk.js",
+    "static/js/588.668aa8f6.chunk.js": "/techgen-front/static/js/588.668aa8f6.chunk.js",
     "index.html": "/techgen-front/index.html",
     "main.fc0706bd.css.map": "/techgen-front/static/css/main.fc0706bd.css.map",
-    "main.abc7d062.js.map": "/techgen-front/static/js/main.abc7d062.js.map",
-    "94.e0a119f8.chunk.js.map": "/techgen-front/static/js/94.e0a119f8.chunk.js.map",
-    "845.5d9c2a85.chunk.js.map": "/techgen-front/static/js/845.5d9c2a85.chunk.js.map",
-    "568.dbda8094.chunk.js.map": "/techgen-front/static/js/568.dbda8094.chunk.js.map"
+    "main.81045c69.js.map": "/techgen-front/static/js/main.81045c69.js.map",
+    "94.11cfdc0c.chunk.js.map": "/techgen-front/static/js/94.11cfdc0c.chunk.js.map",
+    "845.98b7fc14.chunk.js.map": "/techgen-front/static/js/845.98b7fc14.chunk.js.map",
+    "588.668aa8f6.chunk.js.map": "/techgen-front/static/js/588.668aa8f6.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.fc0706bd.css",
-    "static/js/main.abc7d062.js"
+    "static/js/main.81045c69.js"
   ]
 }
