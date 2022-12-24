@@ -25,5 +25,5 @@
     "strictNullChecks": true /* Enable strict null checks. */,
     "allowJs": true /* Allow javascript files to be compiled. */
   },
-  "include": ["src"]
+  "include": ["src", "global.d.ts"]
 }

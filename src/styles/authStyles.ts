@@ -1,6 +1,11 @@
 import { createStyles } from '@mantine/core';
 
 export const useStyles = createStyles({
+  container: {
+    width: '100%',
+    height: '100vh',
+  },
+
   card: {
     position: 'absolute',
     top: '50%',
