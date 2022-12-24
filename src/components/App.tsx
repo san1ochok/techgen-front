@@ -21,6 +21,7 @@ const App = (): JSX.Element => {
     { path: '/techgen-front/signUp', elem: <SignUp /> },
   ];
 
+  //* AOS init
   useEffect(() => {
     AOS.init({
       duration: 500,

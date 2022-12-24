@@ -1,4 +1,4 @@
-import * as React from 'react'
+import * as React from 'react';
 import { Loader as MLoader, Box } from '@mantine/core';
 import { useStyles } from '../styles/loaderStyles';
 
