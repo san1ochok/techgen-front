@@ -25,7 +25,7 @@ export const useStyles = createStyles({
     },
   },
 
-  card_welcome_text: {
+  card_helper_text: {
     fontWeight: 400,
     fontSize: '14px',
     lineHeight: '18px',
@@ -39,7 +39,7 @@ export const useStyles = createStyles({
     },
   },
 
-  card_signup_text: {
+  card_title_text: {
     fontWeight: 500,
     fontSize: '24px',
     color: '#E6E6E6',

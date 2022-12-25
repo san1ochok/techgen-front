@@ -18,7 +18,7 @@ import { ISignUpFormValues } from './SignUp';
 import { IconAt } from '@tabler/icons';
 import authBgSrc from '../../images/authBg.png';
 
-type ISignInFormValues = Omit<ISignUpFormValues, 'repeatedPassword'>;
+type TSignInFormValues = Omit<ISignUpFormValues, 'repeatedPassword'>;
 
 const SignIn = (): JSX.Element => {
   const { classes } = useStyles();
@@ -27,17 +27,17 @@ const SignIn = (): JSX.Element => {
   const largerThan481 = useMediaQuery('(min-width: 481px)');
 
   //* form
-  const form = useForm<ISignInFormValues>({
+  const form = useForm<TSignInFormValues>({
     initialValues: {
       email: '',
       password: '',
     },
   });
 
-  useFormSaving<ISignInFormValues>(form, 'signIn');
+  useFormSaving<TSignInFormValues>(form, 'signIn');
 
   //* submit
-  const onSubmit: FormEventHandler<HTMLFormElement> = form.onSubmit(values => {
+  const submit: FormEventHandler<HTMLFormElement> = form.onSubmit(values => {
     console.log(values);
     form.reset();
   });
@@ -50,20 +50,20 @@ const SignIn = (): JSX.Element => {
         radius="md"
       >
         <Text
-          className={classes.card_welcome_text}
+          className={classes.card_helper_text}
           data-aos="zoom-in"
           data-aos-duration="900"
         >
           You’re welcome! 👋
         </Text>
         <Text
-          className={classes.card_signup_text}
+          className={classes.card_title_text}
           data-aos="zoom-in"
           data-aos-duration="1800"
         >
           Sign up your new account
         </Text>
-        <form onSubmit={onSubmit}>
+        <form onSubmit={submit}>
           <Stack spacing="md">
             <TextInput
               {...form.getInputProps('email')}
