@@ -54,7 +54,7 @@ export const useStyles = createStyles({
     height: '45px',
     padding: '9px 14px',
     textTransform: 'uppercase',
-    fontWeight: 600,
+    fontWeight: 700,
     fontSize: '16px',
     marginTop: '25px',
     width: '100%',
@@ -74,7 +74,7 @@ export const useStyles = createStyles({
     marginTop: '15px',
   },
 
-  forget_password_text: {
+  forgot_password_text: {
     color: '#625BF7',
     fontWeight: 700,
     fontSize: '12px',

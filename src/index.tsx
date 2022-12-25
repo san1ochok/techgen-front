@@ -9,9 +9,9 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <MantineProvider theme={theme} withGlobalStyles withNormalizeCSS>
-    <BrowserRouter>
+  <BrowserRouter>
+    <MantineProvider theme={theme} withGlobalStyles withNormalizeCSS>
       <App />
-    </BrowserRouter>
-  </MantineProvider>
+    </MantineProvider>
+  </BrowserRouter>
 );

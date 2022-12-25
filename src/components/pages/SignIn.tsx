@@ -18,7 +18,7 @@ import { ISignUpFormValues } from './SignUp';
 import { IconAt } from '@tabler/icons';
 import authBgSrc from '../../images/authBg.png';
 
-type ISignInFormValues = Omit<ISignUpFormValues, 'repeatedPassword'>;
+type TSignInFormValues = Omit<ISignUpFormValues, 'repeatedPassword'>;
 
 const SignIn = (): JSX.Element => {
   const { classes } = useStyles();
@@ -27,14 +27,14 @@ const SignIn = (): JSX.Element => {
   const largerThan481 = useMediaQuery('(min-width: 481px)');
 
   //* form
-  const form = useForm<ISignInFormValues>({
+  const form = useForm<TSignInFormValues>({
     initialValues: {
       email: '',
       password: '',
     },
   });
 
-  useFormSaving<ISignInFormValues>(form, 'signIn');
+  useFormSaving<TSignInFormValues>(form, 'signIn');
 
   //* submit
   const onSubmit: FormEventHandler<HTMLFormElement> = form.onSubmit(values => {
@@ -88,7 +88,7 @@ const SignIn = (): JSX.Element => {
           </Button>
         </form>
         <Center>
-          <Text className={classes.forget_password_text}>
+          <Text className={classes.forgot_password_text}>
             Forgot your password?
           </Text>
         </Center>
