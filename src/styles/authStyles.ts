@@ -39,6 +39,14 @@ export const useStyles = createStyles({
     },
   },
 
+  card_welcome_text_success: {
+    fontWeight: 400,
+    fontSize: '14px',
+    lineHeight: '18px',
+    color: 'rgba(241, 241, 241, 0.85)',
+    marginTop: '12px',
+  },
+
   card_signup_text: {
     fontWeight: 500,
     fontSize: '24px',

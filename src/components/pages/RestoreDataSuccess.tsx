@@ -1,11 +1,4 @@
-import {
-  BackgroundImage,
-  Card,
-  Stack,
-  TextInput,
-  Button,
-  Text,
-} from '@mantine/core';
+import { BackgroundImage, Card, Button, Text } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { useMediaQuery } from '@mantine/hooks';
 import { useFormSaving } from 'hooks/useFormSaving';
@@ -13,31 +6,25 @@ import * as React from 'react';
 import { FormEventHandler } from 'react';
 import { useStyles } from '../../styles/authStyles';
 import { ISignUpFormValues } from './SignUp';
-import { IconAt } from '@tabler/icons';
 import authBgSrc from '../../images/authBg.png';
 
-type TRestoreDataValues = Omit<
+type TRestoreDataSuccess = Omit<
   ISignUpFormValues,
-  'repeatedPassword' | 'password'
-> & {
-  recoveryCode: string;
-};
+  'repeatedPassword' | 'password' | 'email'
+>;
 
-const RestoreData = (): JSX.Element => {
+const RestoreDataSuccess = (): JSX.Element => {
   const { classes } = useStyles();
 
   //* media query
   const largerThan481 = useMediaQuery('(min-width: 481px)');
 
   //* form
-  const form = useForm<TRestoreDataValues>({
-    initialValues: {
-      email: '',
-      recoveryCode: '',
-    },
+  const form = useForm<TRestoreDataSuccess>({
+    initialValues: {},
   });
 
-  useFormSaving<TRestoreDataValues>(form, 'signIn');
+  useFormSaving<TRestoreDataSuccess>(form, 'signIn');
 
   //* submit
   const onSubmit: FormEventHandler<HTMLFormElement> = form.onSubmit(values => {
@@ -53,41 +40,27 @@ const RestoreData = (): JSX.Element => {
         radius="md"
       >
         <Text
-          className={classes.card_welcome_text}
-          data-aos="zoom-in"
-          data-aos-duration="900"
-        >
-          Looks like you forgot something 😣
-        </Text>
-        <Text
           className={classes.card_signup_text}
           data-aos="zoom-in"
           data-aos-duration="1800"
         >
-          Restore your Data
+          Password successfully restored! ✅
+          <Text
+            className={classes.card_welcome_text_success}
+            data-aos="zoom-in"
+            data-aos-duration="900"
+          >
+            Don't forget it next time, because it's always a shame to lose
+            something important.
+          </Text>
         </Text>
         <form onSubmit={onSubmit}>
-          <Stack spacing="md">
-            <TextInput
-              {...form.getInputProps('email')}
-              size="md"
-              radius="md"
-              label="Email"
-              icon={<IconAt size={18} />}
-            />
-            <TextInput
-              {...form.getInputProps('recoveryCode')}
-              size="md"
-              radius="md"
-              label="Recovery Code"
-            />
-          </Stack>
           <Button
             type="submit"
             sx={{ marginTop: '8%' }}
             className={classes.card_btn}
           >
-            Continue
+            sign in
           </Button>
         </form>
       </Card>
@@ -95,4 +68,4 @@ const RestoreData = (): JSX.Element => {
   );
 };
 
-export default RestoreData;
+export default RestoreDataSuccess;

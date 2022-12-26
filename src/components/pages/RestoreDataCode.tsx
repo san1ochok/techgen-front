@@ -13,31 +13,29 @@ import * as React from 'react';
 import { FormEventHandler } from 'react';
 import { useStyles } from '../../styles/authStyles';
 import { ISignUpFormValues } from './SignUp';
-import { IconAt } from '@tabler/icons';
 import authBgSrc from '../../images/authBg.png';
 
-type TRestoreDataValues = Omit<
+type TRestoreDataValuesCode = Omit<
   ISignUpFormValues,
-  'repeatedPassword' | 'password'
+  'repeatedPassword' | 'password' | 'email'
 > & {
   recoveryCode: string;
 };
 
-const RestoreData = (): JSX.Element => {
+const RestoreDataCode = (): JSX.Element => {
   const { classes } = useStyles();
 
   //* media query
   const largerThan481 = useMediaQuery('(min-width: 481px)');
 
   //* form
-  const form = useForm<TRestoreDataValues>({
+  const form = useForm<TRestoreDataValuesCode>({
     initialValues: {
-      email: '',
       recoveryCode: '',
     },
   });
 
-  useFormSaving<TRestoreDataValues>(form, 'signIn');
+  useFormSaving<TRestoreDataValuesCode>(form, 'signIn');
 
   //* submit
   const onSubmit: FormEventHandler<HTMLFormElement> = form.onSubmit(values => {
@@ -69,17 +67,10 @@ const RestoreData = (): JSX.Element => {
         <form onSubmit={onSubmit}>
           <Stack spacing="md">
             <TextInput
-              {...form.getInputProps('email')}
-              size="md"
-              radius="md"
-              label="Email"
-              icon={<IconAt size={18} />}
-            />
-            <TextInput
               {...form.getInputProps('recoveryCode')}
               size="md"
               radius="md"
-              label="Recovery Code"
+              label="Enter received code"
             />
           </Stack>
           <Button
@@ -95,4 +86,4 @@ const RestoreData = (): JSX.Element => {
   );
 };
 
-export default RestoreData;
+export default RestoreDataCode;
