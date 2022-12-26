@@ -42,6 +42,7 @@ const RestoreData = (): JSX.Element => {
   //* submit
   const onSubmit: FormEventHandler<HTMLFormElement> = form.onSubmit(values => {
     console.log(values);
+    sessionStorage.setItem('RecoveryData', JSON.stringify(values));
     form.reset();
   });
 
