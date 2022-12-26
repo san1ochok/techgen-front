@@ -11,8 +11,7 @@ import {
 import { useForm } from '@mantine/form';
 import { useMediaQuery } from '@mantine/hooks';
 import { useFormSaving } from 'hooks/useFormSaving';
-import * as React from 'react';
-import { FormEventHandler } from 'react';
+import React, { FormEventHandler } from 'react';
 import { useStyles } from '../../styles/authStyles';
 import { ISignUpFormValues } from './SignUp';
 import { IconAt } from '@tabler/icons';

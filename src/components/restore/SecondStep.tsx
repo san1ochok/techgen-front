@@ -1,7 +1,7 @@
 import { Button, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { useFormSaving } from 'hooks/useFormSaving';
-import * as React from 'react';
+import React, { FormEventHandler } from 'react';
 import { useStyles } from 'styles/authStyles';
 import StepsIndicator from './StepsIndicator';
 
@@ -23,7 +23,7 @@ const SecondStep = ({ nextStep }: TProps): JSX.Element => {
   useFormSaving<ISecondStepFormData>(form, 'restoreSecondStep');
 
   //* submit
-  const submit: React.FormEventHandler<HTMLFormElement> = form.onSubmit(
+  const submit: FormEventHandler<HTMLFormElement> = form.onSubmit(
     values => {
       console.log(values);
       form.reset();
