@@ -5,7 +5,6 @@ import {
   TextInput,
   Button,
   Text,
-  NumberInput,
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { useMediaQuery } from '@mantine/hooks';
@@ -17,7 +16,12 @@ import { ISignUpFormValues } from './SignUp';
 import { IconAt } from '@tabler/icons';
 import authBgSrc from '../../images/authBg.png';
 
-type TSignInFormValues = Omit<ISignUpFormValues, 'repeatedPassword'>;
+type RestoreDataValues = Omit<
+  ISignUpFormValues,
+  'repeatedPassword' | 'password'
+> & {
+  recoveryCode: string;
+};
 
 const RestoreData = (): JSX.Element => {
   const { classes } = useStyles();
@@ -26,14 +30,14 @@ const RestoreData = (): JSX.Element => {
   const largerThan481 = useMediaQuery('(min-width: 481px)');
 
   //* form
-  const form = useForm<TSignInFormValues>({
+  const form = useForm<RestoreDataValues>({
     initialValues: {
       email: '',
-      password: '',
+      recoveryCode: '',
     },
   });
 
-  useFormSaving<TSignInFormValues>(form, 'signIn');
+  useFormSaving<RestoreDataValues>(form, 'signIn');
 
   //* submit
   const onSubmit: FormEventHandler<HTMLFormElement> = form.onSubmit(values => {
@@ -71,7 +75,7 @@ const RestoreData = (): JSX.Element => {
               label="Email"
               icon={<IconAt size={18} />}
             />
-            <NumberInput
+            <TextInput
               {...form.getInputProps('recoveryCode')}
               size="md"
               radius="md"
