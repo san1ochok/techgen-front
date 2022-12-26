@@ -1,36 +1,16 @@
 import { BackgroundImage, Card, Button, Text } from '@mantine/core';
-import { useForm } from '@mantine/form';
 import { useMediaQuery } from '@mantine/hooks';
-import { useFormSaving } from 'hooks/useFormSaving';
 import * as React from 'react';
-import { FormEventHandler } from 'react';
-import { useStyles } from '../../styles/authStyles';
-import { ISignUpFormValues } from './SignUp';
+import { useStyles } from '../../styles/restoreDataSuccess';
 import authBgSrc from '../../images/authBg.png';
-
-type TRestoreDataSuccess = Omit<
-  ISignUpFormValues,
-  'repeatedPassword' | 'password' | 'email'
->;
 
 const RestoreDataSuccess = (): JSX.Element => {
   const { classes } = useStyles();
-
-  //* media query
   const largerThan481 = useMediaQuery('(min-width: 481px)');
 
-  //* form
-  const form = useForm<TRestoreDataSuccess>({
-    initialValues: {},
-  });
-
-  useFormSaving<TRestoreDataSuccess>(form, 'signIn');
-
-  //* submit
-  const onSubmit: FormEventHandler<HTMLFormElement> = form.onSubmit(values => {
-    console.log(values);
-    form.reset();
-  });
+  const handleClick = () => {
+    // use the push method on the history object to navigate to the SignIn page
+  };
 
   return (
     <BackgroundImage className={classes.container} src={authBgSrc}>
@@ -54,15 +34,14 @@ const RestoreDataSuccess = (): JSX.Element => {
             something important.
           </Text>
         </Text>
-        <form onSubmit={onSubmit}>
-          <Button
-            type="submit"
-            sx={{ marginTop: '8%' }}
-            className={classes.card_btn}
-          >
-            sign in
-          </Button>
-        </form>
+        <Button
+          onClick={handleClick}
+          type="submit"
+          sx={{ marginTop: '8%' }}
+          className={classes.card_btn}
+        >
+          sign in
+        </Button>
       </Card>
     </BackgroundImage>
   );
