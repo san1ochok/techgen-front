@@ -11,8 +11,7 @@ import {
 import { useForm } from '@mantine/form';
 import { useMediaQuery } from '@mantine/hooks';
 import { useFormSaving } from 'hooks/useFormSaving';
-import * as React from 'react';
-import { FormEventHandler } from 'react';
+import React, { FormEventHandler } from 'react';
 import { useStyles } from '../../styles/authStyles';
 import { IconAt } from '@tabler/icons';
 import authBgSrc from '../../images/authBg.png';
@@ -63,6 +62,7 @@ const SignUp = (): JSX.Element => {
     },
   });
 
+  //* saving inputs values
   useFormSaving<ISignUpFormValues>(form, 'signUp');
 
   //* checking if password equal
@@ -77,7 +77,7 @@ const SignUp = (): JSX.Element => {
   }
 
   //* submit
-  const onSubmit: FormEventHandler<HTMLFormElement> = form.onSubmit(values => {
+  const submit: FormEventHandler<HTMLFormElement> = form.onSubmit(values => {
     console.log(values);
     form.reset();
   });
@@ -90,20 +90,20 @@ const SignUp = (): JSX.Element => {
         radius="md"
       >
         <Text
-          className={classes.card_welcome_text}
+          className={classes.card_helper_text}
           data-aos="zoom-in"
           data-aos-duration="900"
         >
           You’re welcome! 👋
         </Text>
         <Text
-          className={classes.card_signup_text}
+          className={classes.card_title_text}
           data-aos="zoom-in"
           data-aos-duration="1800"
         >
           Sign up your new account
         </Text>
-        <form onSubmit={onSubmit}>
+        <form onSubmit={submit}>
           <Stack spacing="md">
             <TextInput
               {...form.getInputProps('email')}

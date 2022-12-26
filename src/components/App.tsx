@@ -13,12 +13,14 @@ interface IRoute {
 //* lazy pages imports
 const SignIn = React.lazy(() => import('./pages/SignIn'));
 const SignUp = React.lazy(() => import('./pages/SignUp'));
+const Restore = React.lazy(() => import('./pages/Restore'));
 
 const App = (): JSX.Element => {
   //* routes
   const routes: IRoute[] = [
     { path: '/techgen-front/signIn', elem: <SignIn /> },
     { path: '/techgen-front/signUp', elem: <SignUp /> },
+    { path: '/techgen-front/restore', elem: <Restore /> },
   ];
 
   //* AOS init
