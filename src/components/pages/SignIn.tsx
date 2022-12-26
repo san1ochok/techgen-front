@@ -16,6 +16,7 @@ import { useStyles } from '../../styles/authStyles';
 import { ISignUpFormValues } from './SignUp';
 import { IconAt } from '@tabler/icons';
 import authBgSrc from '../../images/authBg.png';
+import { validateEmailAndIsEmpty, validateIsEmpty } from 'authValidation';
 
 type TSignInFormValues = Omit<ISignUpFormValues, 'repeatedPassword'>;
 
@@ -31,14 +32,20 @@ const SignIn = (): JSX.Element => {
       email: '',
       password: '',
     },
+    validate: {
+      email: validateEmailAndIsEmpty,
+      password: validateIsEmpty
+    }
   });
 
-  useFormSaving<TSignInFormValues>(form, 'signIn');
+  //* saving inputs values
+  const resetSavedValues = useFormSaving<TSignInFormValues>(form, 'signIn');
 
   //* submit
   const submit: FormEventHandler<HTMLFormElement> = form.onSubmit(values => {
     console.log(values);
     form.reset();
+    resetSavedValues()
   });
 
   return (
@@ -53,14 +60,14 @@ const SignIn = (): JSX.Element => {
           data-aos="zoom-in"
           data-aos-duration="900"
         >
-          You’re welcome! 👋
+          Welcome back! 👋
         </Text>
         <Text
           className={classes.card_title_text}
           data-aos="zoom-in"
           data-aos-duration="1800"
         >
-          Sign up your new account
+          Sign in to your account
         </Text>
         <form onSubmit={submit}>
           <Stack spacing="md">
