@@ -13,18 +13,20 @@ interface IRoute {
 //* lazy pages imports
 const SignIn = React.lazy(() => import('./pages/SignIn'));
 const SignUp = React.lazy(() => import('./pages/SignUp'));
+const RestoreData = React.lazy(() => import('./pages/RestoreData'));
 
 const App = (): JSX.Element => {
   //* routes
   const routes: IRoute[] = [
     { path: '/techgen-front/signIn', elem: <SignIn /> },
     { path: '/techgen-front/signUp', elem: <SignUp /> },
+    { path: '/techgen-front/restoreData', elem: <RestoreData /> },
   ];
 
   //* AOS init
   useEffect(() => {
     AOS.init({
-      duration: 500,
+      duration: 1000,
     });
   }, []);
 
