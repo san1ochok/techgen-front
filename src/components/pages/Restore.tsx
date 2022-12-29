@@ -1,5 +1,5 @@
 import { BackgroundImage, Card, Text } from '@mantine/core';
-import { useLocalStorage, useMediaQuery } from '@mantine/hooks';
+import { useMediaQuery, useSessionStorage } from '@mantine/hooks';
 import FirstStep from 'components/restore/FirstStep';
 import SecondStep from 'components/restore/SecondStep';
 import ThirdStep from 'components/restore/ThirdStep';
@@ -8,7 +8,7 @@ import { useStyles as useAuthStyles } from 'styles/authStyles';
 import authBgSrc from '../../images/authBg.png';
 
 const Restore = (): JSX.Element => {
-  const [step, setStep] = useLocalStorage<number>({
+  const [step, setStep] = useSessionStorage<number>({
     key: 'restoreStep',
     defaultValue: 1,
   });

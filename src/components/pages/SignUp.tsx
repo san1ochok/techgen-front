@@ -15,6 +15,7 @@ import React, { FormEventHandler } from 'react';
 import { useStyles } from '../../styles/authStyles';
 import { IconAt } from '@tabler/icons';
 import authBgSrc from '../../images/authBg.png';
+import { validateEmailAndIsEmpty, validateIsEmpty, validatePassword } from 'authValidation';
 
 export interface ISignUpFormValues {
   email: string;
@@ -28,26 +29,6 @@ const SignUp = (): JSX.Element => {
   //* media query
   const largerThan481 = useMediaQuery('(min-width: 481px)');
 
-  //* validate email
-  const validateEmail = (value: string): null | string => {
-    const validRegex: RegExp =
-      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-    if (validRegex.test(value)) return null;
-    else return 'Invalid email';
-  };
-
-  //* validate password
-  const validatePassword = (value: string): null | string => {
-    //* minimum 8 eight characters: digit, symbol, uppercase, lowercase
-    const validRegex: RegExp =
-      /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})/;
-
-    if (validRegex.test(value)) return null;
-    else
-      return 'Password must include minimum 8 characters: digit, symbol, uppercase, lowercase';
-  };
-
   //* form
   const form = useForm<ISignUpFormValues>({
     initialValues: {
@@ -56,29 +37,30 @@ const SignUp = (): JSX.Element => {
       repeatedPassword: '',
     },
     validate: {
-      email: validateEmail,
+      email: validateEmailAndIsEmpty,
       password: validatePassword,
-      repeatedPassword: validatePassword,
+      repeatedPassword: validateIsEmpty,
     },
   });
 
   //* saving inputs values
-  useFormSaving<ISignUpFormValues>(form, 'signUp');
+  const resetSavedValues = useFormSaving<ISignUpFormValues>(form, 'signUp');
 
   //* checking if password equal
-  const { password, repeatedPassword } = form.values;
+  const { email, password, repeatedPassword } = form.values;
 
   if (repeatedPassword.length > 0 && repeatedPassword !== password) {
     form.errors.repeatedPassword = "Passwords aren't same";
   }
 
-  if (password === repeatedPassword && form.errors.password) {
+  if (password === repeatedPassword && form.errors.password && email) {
     form.errors.repeatedPassword = null;
   }
 
   //* submit
   const submit: FormEventHandler<HTMLFormElement> = form.onSubmit(values => {
     console.log(values);
+    resetSavedValues();
     form.reset();
   });
 

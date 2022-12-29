@@ -1,4 +1,4 @@
-import React, { MouseEventHandler } from 'react';
+import React, { MouseEventHandler, useEffect } from 'react';
 import { useStyles as useAuthStyles } from 'styles/authStyles';
 import { Text, Button, Sx } from '@mantine/core';
 import StepsIndicator from './StepsIndicator';
@@ -8,6 +8,11 @@ import { useNavigate } from 'react-router-dom';
 type TProps = { nextStep: () => void };
 
 const ThirdStep = ({ nextStep }: TProps): JSX.Element => {
+  //* removing prev step saves
+  useEffect(() => {
+    sessionStorage.removeItem('restoreSecondStep')
+  }, [])
+
   const { classes: authClasses } = useAuthStyles();
   const { classes } = useStyles();
 

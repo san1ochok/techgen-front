@@ -1,8 +1,9 @@
 import { Button, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { useFormSaving } from 'hooks/useFormSaving';
-import React, { FormEventHandler } from 'react';
+import React, { FormEventHandler, useEffect } from 'react';
 import { useStyles } from 'styles/authStyles';
+import { validateIsEmpty } from 'authValidation';
 import StepsIndicator from './StepsIndicator';
 
 interface ISecondStepFormData {
@@ -12,11 +13,17 @@ interface ISecondStepFormData {
 type TProps = { nextStep: () => void };
 
 const SecondStep = ({ nextStep }: TProps): JSX.Element => {
+  //* removing prev step saves
+  useEffect(() => {
+    sessionStorage.removeItem('restoreFirstStep')
+  }, [])
+
   const { classes } = useStyles();
 
   //* form
   const form = useForm<ISecondStepFormData>({
     initialValues: { receivedCode: '' },
+    validate: { receivedCode: validateIsEmpty }
   });
 
   //* saving inputs values
@@ -26,7 +33,6 @@ const SecondStep = ({ nextStep }: TProps): JSX.Element => {
   const submit: FormEventHandler<HTMLFormElement> = form.onSubmit(
     values => {
       console.log(values);
-      form.reset();
       nextStep();
     }
   );

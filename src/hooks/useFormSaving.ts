@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { UseFormReturnType } from '@mantine/form';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export const useFormSaving = <IInitialFormValues>(
   form: UseFormReturnType<
@@ -7,25 +8,40 @@ export const useFormSaving = <IInitialFormValues>(
     (values: IInitialFormValues) => IInitialFormValues
   >,
   key: string
-) => {
+): () => void => {
+  const [needReset, setNeedReset] = useState<boolean>(false)
+
   //* getting values if exist
   useEffect(() => {
-    const storedValue = window.sessionStorage.getItem(key);
+    const storedValue = sessionStorage.getItem(key);
     if (storedValue) {
       try {
         form.setValues(
-          JSON.parse(window.sessionStorage.getItem(key) as string)
+          JSON.parse(sessionStorage.getItem(key) as string)
         );
       } catch (e) {
         console.log('Failed to parse stored value');
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   //* saving when value change
   useEffect(() => {
-    window.sessionStorage.setItem(key, JSON.stringify(form.values));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    sessionStorage.setItem(key, JSON.stringify(form.values));
   }, [form.values]);
+
+  //* reset fields
+  const resetFields = (): void => setNeedReset(true)
+
+  const reset = (): void => {
+    sessionStorage.removeItem(key)
+    setNeedReset(false)
+  }
+
+  //* reset
+  useEffect(() => {
+    needReset && reset()
+  }, [needReset])
+
+  return resetFields
 };
