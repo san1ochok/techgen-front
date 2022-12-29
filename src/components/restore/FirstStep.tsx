@@ -2,7 +2,7 @@ import { Button, Stack, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { IconAt } from '@tabler/icons';
 import { useFormSaving } from 'hooks/useFormSaving';
-import React, { FormEventHandler, useEffect, useState } from 'react';
+import React, { FormEventHandler } from 'react';
 import { useStyles } from 'styles/authStyles';
 import { validateEmailAndIsEmpty, validateIsEmpty } from 'authValidation';
 import StepsIndicator from './StepsIndicator';
@@ -25,8 +25,8 @@ const FirstStep = ({ nextStep }: TProps): JSX.Element => {
     },
     validate: {
       email: validateEmailAndIsEmpty,
-      recoveryCode: validateIsEmpty
-    }
+      recoveryCode: validateIsEmpty,
+    },
   });
 
   //* saving inputs values
