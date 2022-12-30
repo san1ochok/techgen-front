@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { MouseEventHandler } from 'react';
 import {
   PagesList,
   A,
@@ -8,9 +8,14 @@ import {
   Header,
   Button,
 } from '../../styles/homepageStyles';
+import { useNavigate } from 'react-router-dom';
 
 const HomePage = (): JSX.Element => {
-  //   const { classes: homePageClasses } = useAuthStyles();
+  const navigate = useNavigate();
+  //* sign in
+  const signIn: MouseEventHandler<HTMLButtonElement> = () => {
+    navigate('/techgen-front/signIn');
+  };
 
   return (
     <>
@@ -37,7 +42,9 @@ const HomePage = (): JSX.Element => {
                 <A href="/techgen-front/HomePage">ABOUT US</A>
               </li>
             </PagesList>
-            <Button type="button">SIGN IN</Button>
+            <Button type="button" onClick={signIn}>
+              SIGN IN
+            </Button>
           </Nav>
         </Container>
       </Header>
