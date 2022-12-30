@@ -22,10 +22,10 @@ const HomePage = (): JSX.Element => {
       <Header>
         <Container>
           <Nav>
-            <Logo>
+            <Logo data-aos="zoom-in" data-aos-duration="900">
               <A href="/techgen-front/HomePage">TECHGEN</A>
             </Logo>
-            <PagesList>
+            <PagesList data-aos="zoom-in" data-aos-duration="900">
               <li>
                 <A href="/techgen-front/HomePage">BLOG</A>
               </li>
@@ -42,7 +42,12 @@ const HomePage = (): JSX.Element => {
                 <A href="/techgen-front/HomePage">ABOUT US</A>
               </li>
             </PagesList>
-            <Button type="button" onClick={signIn}>
+            <Button
+              type="button"
+              onClick={signIn}
+              data-aos="zoom-in"
+              data-aos-duration="900"
+            >
               SIGN IN
             </Button>
           </Nav>
