@@ -51,7 +51,12 @@ export const Header = styled.header`
   letter-spacing: -0.055em;
   color: #ffffff;
 
-  background: #1f1f1f;
+  background: rgb(34, 34, 34);
+  background: linear-gradient(
+    180deg,
+    rgba(34, 34, 34, 1) 0%,
+    rgba(26, 27, 30, 1) 100%
+  );
 `;
 
 export const Button = styled.button`
