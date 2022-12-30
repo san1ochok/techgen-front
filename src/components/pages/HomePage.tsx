@@ -42,12 +42,7 @@ const HomePage = (): JSX.Element => {
                 <A href="/techgen-front/HomePage">ABOUT US</A>
               </li>
             </PagesList>
-            <Button
-              type="button"
-              onClick={signIn}
-              data-aos="zoom-in"
-              data-aos-duration="900"
-            >
+            <Button type="button" onClick={signIn}>
               SIGN IN
             </Button>
           </Nav>
