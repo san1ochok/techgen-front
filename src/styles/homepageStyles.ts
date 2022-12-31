@@ -16,18 +16,13 @@ export const Nav = styled.nav`
 `;
 
 export const PagesList = styled.ul`
-  list-style: none;
   display: flex;
   flex-wrap: wrap;
   gap: 28px;
   color: white;
-  padding: 0;
 `;
 
 export const A = styled.a`
-  text-decoration: none;
-  color: currentColor;
-
   &:hover {
     opacity: 0.5;
   }
