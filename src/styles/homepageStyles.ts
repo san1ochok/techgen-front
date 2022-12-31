@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import '@fontsource/montserrat';
 
 export const Container = styled.div`
   width: 100%;
